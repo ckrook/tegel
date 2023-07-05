@@ -18,7 +18,7 @@
 
 | Slot          | Description                                                   |
 | ------------- | ------------------------------------------------------------- |
-| `"default"`   | Default slot for the Table Body, used by <tds-table-body-row> |
+| `"<default>"` | Default slot for the Table Body, used by <tds-table-body-row> |
 | `"no-result"` | Slot for no result message when using filtering.              |
 
 
