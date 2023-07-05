@@ -171,30 +171,22 @@ const FilteringTemplate = ({
                 column4Width ? `custom-width="${column4Width}"` : ''
               }></tds-header-cell>
           </tds-table-header>
-          <tds-table-body no-result-message="The query did not match any data." ${useDataProp ? `body-data='${JSON.stringify(dummyData)}'` : ''}>
-            ${
-              !useDataProp
-                ? dummyData
-                    .map(
-                      (row) =>
-                        `<tds-table-body-row>
-                        ${Object.entries(row)
-                          .map(
-                            (cell) =>
-                              `<tds-body-cell cell-key="${cell[0]}" cell-value="${cell[1]}"></tds-body-cell>`,
-                          )
-                          .join(' ')}
-                      </tds-table-body-row>`,
-                    )
-                    .join(' ')
-                : ''
-            }
+          <tds-table-body no-result-message="The query did not match any data." >
+            
           </tds-table-body>
   </tds-table>
   
   <script>
+    tableBody = document.querySelector('tds-table-body');
+    tableBody.bodyData = ${JSON.stringify(dummyData)}
+
+
     document.addEventListener('tdsFilterChange', (event) => {
-      console.log(event)
+      event.preventDefault();
+      query = event.detail.query;
+
+      
+
     })
   </script>`);
 
