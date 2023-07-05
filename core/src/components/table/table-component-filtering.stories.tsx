@@ -176,16 +176,16 @@ const FilteringTemplate = ({
   </tds-table>
   
   <script>
+    bodyData = ${JSON.stringify(dummyData)};
     
     tableBody = document.querySelector('tds-table-body');
-    tableBody.bodyData = ${JSON.stringify(dummyData)};
-
+    tableBody.bodyData = bodyData;
 
     document.addEventListener('tdsFilterChange', (event) => {
       event.preventDefault();
       query = event.detail.query;
 
-      const updatedBodyData = tableBody.bodyData.filter(
+      const updatedBodyData = bodyData.filter(
         row => (
           Object.values(row).some(
             col => String(col).toLowerCase().includes(query)

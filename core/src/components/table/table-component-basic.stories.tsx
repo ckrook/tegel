@@ -158,6 +158,7 @@ const BasicTemplate = ({
       enable-responsive="${responsiveDesign}"
       ${noMinWidth ? 'no-min-width' : ''}
       ${modeVariant !== 'Inherit from parent' ? `mode-variant="${modeVariant.toLowerCase()}"` : ''}>
+      <tds-table-toolbar table-title="Filter" enable-filtering></tds-table-toolbar>
       <tds-table-header>
           <tds-header-cell column-key='truck' column-title='Truck type' ${
             column1Width ? `custom-width="${column1Width}"` : ''
@@ -172,7 +173,7 @@ const BasicTemplate = ({
             column4Width ? `custom-width="${column4Width}"` : ''
           }></tds-header-cell>
       </tds-table-header>
-      <tds-table-body>
+      <tds-table-body no-result-message="The query did not match any data.">
           <tds-table-body-row>
               <tds-body-cell cell-value="Test value 1" cell-key="truck" disable-padding="${disablePadding}"></tds-body-cell>
               <tds-body-cell cell-value="Test value 2" cell-key="driver" disable-padding="${disablePadding}"></tds-body-cell>
@@ -210,6 +211,24 @@ const BasicTemplate = ({
               <tds-body-cell cell-value="Test value 8" cell-key="mileage" disable-padding="${disablePadding}"></tds-body-cell>
           </tds-table-body-row>
       </tds-table-body>
-  </tds-table>`);
+  </tds-table>
+  <script>
+      tableBody = document.querySelector('tds-table-body');
+
+      document.addEventListener('tdsFilterChange', (event) => {
+        event.preventDefault();
+        query = event.detail.query;
+  
+        const updatedBodyData = bodyData.filter(
+          row => (
+            Object.values(row).some(
+              col => String(col).toLowerCase().includes(query)
+            )
+          )
+        );
+  
+        tableBody.bodyData = updatedBodyData;
+      })
+  </script>`);
 
 export const Default = BasicTemplate.bind({});

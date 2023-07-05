@@ -122,6 +122,8 @@ export class TdsTableBody {
 
   @State() tableId: string = '';
 
+  @State() noResult: boolean;
+
   tableEl: HTMLTdsTableElement;
 
   @Watch('bodyData')
@@ -367,7 +369,14 @@ export class TdsTableBody {
     }
   }
 
+  componentDidRender() {
+    this.noResult = this.host.querySelectorAll('tds-table-body-row:not(.tds-table__row--hidden)').length < 1;
+
+  }
+
   render() {
+
+    
     return (
       <Host data-selected-rows={this.multiselectArrayJSON}>
         {this.bodyDataManipulated.map((row) => (
@@ -377,12 +386,14 @@ export class TdsTableBody {
             ))}
           </tds-table-body-row>
         ))}
-          <tr hidden={!this.showNoResultsMessage}>
+           {this.noResult && (
+            <tr>
             <td class="tds-table__info-message" colSpan={this.columnsNumber}>
               <slot name="no-result"/>
               {this.noResultMessage}
             </td>
           </tr>
+          )} 
         <slot></slot>
       </Host>
     );
