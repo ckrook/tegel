@@ -140,7 +140,6 @@ const FilteringTemplate = ({
   modeVariant,
   compactDesign,
   responsiveDesign,
-  useDataProp,
   verticalDivider,
   noMinWidth,
   column1Width,
@@ -177,16 +176,24 @@ const FilteringTemplate = ({
   </tds-table>
   
   <script>
+    
     tableBody = document.querySelector('tds-table-body');
-    tableBody.bodyData = ${JSON.stringify(dummyData)}
+    tableBody.bodyData = ${JSON.stringify(dummyData)};
 
 
     document.addEventListener('tdsFilterChange', (event) => {
       event.preventDefault();
       query = event.detail.query;
 
-      
+      const updatedBodyData = tableBody.bodyData.filter(
+        row => (
+          Object.values(row).some(
+            col => String(col).toLowerCase().includes(query)
+          )
+        )
+      );
 
+      tableBody.bodyData = updatedBodyData;
     })
   </script>`);
 
