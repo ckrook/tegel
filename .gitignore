@@ -52,6 +52,8 @@ src/themes.built/
 storybook-static/
 
 components.d.ts
+component-event-listeners.d.ts
+component-event-listeners-edited.d.ts
 
 
 # Playwright

@@ -2,6 +2,14 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { ValueAccessorConfig, angularOutputTarget } from '@stencil/angular-output-target';
 import { reactOutputTarget } from '@stencil/react-output-target';
+/*
+//import { eventListenerTypesOutputTarget } from 'event-listener-types-output-target';
+//FIXME: There is an error in generator that makes invalid signs in output file which generates Typescript error.
+// Johnny run it once and fix the file but for any change in the events in our components,
+// we need to regenerate this file again.
+// Also uncomment a line 69.
+
+ */
 
 const angularValueAccessorBindings: ValueAccessorConfig[] = [
   {
@@ -61,6 +69,7 @@ export const config: Config = {
     browserArgs: ['--headless=new'],
   },
   outputTargets: [
+    // eventListenerTypesOutputTarget(),
     {
       type: 'dist',
       esmLoaderPath: '../loader',
