@@ -100,5 +100,8 @@
   "engines": {
     "npm": ">=9.0.0",
     "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "event-listener-types-output-target": "^1.3.0"
   }
 }

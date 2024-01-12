@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { ValueAccessorConfig, angularOutputTarget } from '@stencil/angular-output-target';
 import { reactOutputTarget } from '@stencil/react-output-target';
+import { eventListenerTypesOutputTarget } from 'event-listener-types-output-target';
 
 const angularValueAccessorBindings: ValueAccessorConfig[] = [
   {
@@ -88,5 +89,6 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // disable service workers
     },
+    eventListenerTypesOutputTarget(),
   ],
 };
