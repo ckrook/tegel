@@ -62,12 +62,12 @@ export const config: Config = {
   },
   outputTargets: [
     {
-      type: 'dist',
-      esmLoaderPath: '../loader',
+      type: 'dist-custom-elements',
     },
     angularOutputTarget({
       componentCorePackage: '@scania/tegel',
-      outputType: 'component',
+      customElementsDir: 'dist/components',
+      outputType: 'standalone',
       directivesProxyFile: '../angular/projects/components/src/lib/stencil-generated/components.ts',
       directivesArrayFile: '../angular/projects/components/src/lib/stencil-generated/index.ts',
       valueAccessorConfigs: angularValueAccessorBindings,
@@ -79,7 +79,7 @@ export const config: Config = {
     {
       type: 'dist-custom-elements',
       generateTypeDeclarations: true,
-      customElementsExportBehavior: 'auto-define-custom-elements',
+      customElementsExportBehavior: 'single-export-module',
     },
     {
       type: 'docs-readme',
