@@ -88,9 +88,9 @@ export const config: Config = {
       componentCorePackage: '@scania/tegel',
       outputType: 'component',
       directivesProxyFile:
-        '../angular-workspace/projects/component-library/src/lib/stencil-generated/components.ts',
-      directivesArrayFile:
-        '../angular-workspace/projects/component-library/src/lib/stencil-generated/index.ts',
+        '../angular-17/projects/components/src/lib/stencil-generated/components.ts',
+      directivesArrayFile: '../angular-17/projects/components/src/lib/stencil-generated/index.ts',
+      valueAccessorConfigs: angularValueAccessorBindings,
     }),
     {
       type: 'dist-custom-elements',

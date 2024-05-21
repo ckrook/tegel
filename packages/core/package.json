@@ -22,10 +22,6 @@
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/components/components.esm.js",
   "exports": {
-    "./my-component": {
-      "import": "./dist/components/my-component.js",
-      "types": "./dist/components/my-component.d.ts"
-    },
     "./tds-accordion-item": {
       "import": "./dist/components/tds-accordion-item.js",
       "types": "./dist/components/tds-accordion-item.d.ts"
