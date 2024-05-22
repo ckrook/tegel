@@ -10,6 +10,7 @@ const iconfontCss = require('gulp-iconfont-css'); // to create css from webfont
 
 const outputFolder = 'dist';
 const iconFolder = './src/svg/*.svg';
+const globalCoreTSFolder = '../packages/core/src';
 const tempFolder = 'temp';
 const iconComponentFolder = '../packages/core/src/components/icon/';
 
@@ -121,14 +122,25 @@ async function generateIcons() {
     fs.writeFileSync(`${tempFolder}/${icon.name}.svg`, response.data);
   }
 
+  // add predefined variants used in banner.
+  iconsNamesArray.push('information', 'default');
+
+  // convert iconsNamesArray to string separated by pipe
   const icons = `export const iconsCollection = '${JSON.stringify(iconsArray)}';
-  export const iconsNames = ${JSON.stringify(iconsNamesArray)};`;
+  export const iconsNames = ${JSON.stringify(iconsNamesArray)}`;
+
+  const iconNameType = `export type IconName = ${iconsNamesArray
+    .map((name) => `'${name}'`)
+    .join(' | ')};\n`;
 
   // write file into dist folder for testing/debugging purposes
   fs.writeFileSync(`${outputFolder}/iconsArrays.js`, icons);
 
   // write icons into /component/icons folder for component and story usage
   fs.writeFileSync(`${iconComponentFolder}/iconsArray.js`, icons);
+
+  // appent type IconName to core global.d.ts
+  fs.appendFileSync(`${globalCoreTSFolder}/global.d.ts`, iconNameType);
 }
 
 // create icon fonts from cleaned svgs

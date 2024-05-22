@@ -120,4 +120,6 @@ export const iconsNames = [
   'warning',
   'wifi_inactive',
   'wifi',
+  'information',
+  'default',
 ];
