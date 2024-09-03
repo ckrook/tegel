@@ -42,7 +42,7 @@ export class TdsCard {
   /** Makes the Card clickable. */
   @Prop() clickable: boolean = false;
 
-  @Prop() stretch: boolean = true;
+  @Prop() stretch: boolean = false;
 
   /** ID for the Card, must be unique.
    *
